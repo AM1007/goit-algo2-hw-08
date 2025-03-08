@@ -6,13 +6,14 @@ Today, you will practice applying data flow control algorithms to solve practica
 
 Imagine that a chat system requires a mechanism to limit the frequency of user messages to prevent spam. You need to implement this in two ways:
 
-  - Using the Sliding Window algorithm for precise control of time intervals, allowing you to track the number of messages within a given time window and restrict users from sending messages if the limit is exceeded.
-  - Using the Throttling algorithm to control time intervals between messages, ensuring a fixed waiting period between messages and limiting message frequency if the interval is not met.
+- Using the Sliding Window algorithm for precise control of time intervals, allowing you to track the number of messages within a given time window and restrict users from sending messages if the limit is exceeded.
+- Using the Throttling algorithm to control time intervals between messages, ensuring a fixed waiting period between messages and limiting message frequency if the interval is not met.
 
 Ready? Let's get to work!
 
 Good luck! 😎
 
+## [Solution](./solution.md)
 
 ### Task 1: Implementing a Rate Limiter using the Sliding Window Algorithm
 
@@ -23,16 +24,17 @@ In the chat system, a mechanism must be implemented to limit the frequency of us
 1. The implementation must use the Sliding Window algorithm for accurate time interval control.
 
 2. System parameters:
-Window size (window_size): 10 seconds
-Maximum messages per window (max_requests): 1
+   Window size (window_size): 10 seconds
+   Maximum messages per window (max_requests): 1
 
 3. Implement the class SlidingWindowRateLimiter.
 
 4. Implement the following methods:
-  - `_cleanup_window` – removes outdated requests from the window and updates the active time window.
-  - `can_send_message` – checks whether a message can be sent within the current time window.
-  - `record_message` – records a new message and updates the user's message history.
-  - `time_until_next_allowed` – calculates the wait time until the next allowed message.
+
+- `_cleanup_window` – removes outdated requests from the window and updates the active time window.
+- `can_send_message` – checks whether a message can be sent within the current time window.
+- `record_message` – records a new message and updates the user's message history.
+- `time_until_next_allowed` – calculates the wait time until the next allowed message.
 
 5. The data structure for storing message history: collections.deque.
 
@@ -45,7 +47,6 @@ Maximum messages per window (max_requests): 1
 3. When all messages are removed from a user’s window, the user’s record should be deleted from the data structure.
 4. The time_until_next_allowed method should return the wait time in seconds.
 5. The test function runs according to the provided example and behaves as expected.
-
 
 Task template
 
@@ -111,7 +112,6 @@ if __name__ == "__main__":
 
 ```
 
-
 Expected output
 
 ```python
@@ -142,7 +142,6 @@ Messages 19 | User 5 | ✓
 Messages 20 | User 1 | × (expectation 7.0с)
 ```
 
-
 ## Task 2. Implementing a Rate Limiter Using the Throttling Algorithm to Restrict Message Frequency in a Chat
 
 A chat system requires a mechanism to limit the frequency of user messages to prevent spam. The implementation should use the Throttling algorithm to control the time intervals between messages, ensuring a fixed wait time between messages and restricting the sending frequency if this interval is not met.
@@ -153,10 +152,11 @@ A chat system requires a mechanism to limit the frequency of user messages to pr
 2. The system's base parameter: minimum interval between messages (`min_interval`) — 10 seconds.
 3. Implement the `ThrottlingRateLimiter` class.
 4. Implement the following methods:
-  - `can_send_message(user_id: str) -> bool` — checks whether a message can be sent based on the time of the last message.
-  - `record_message(user_id: str) -> bool` — records a new message and updates the last message timestamp.
-  - `time_until_next_allowed(user_id: str) -> float` — calculates the time remaining until the next allowed message.
-Use a dictionary (Dict[str, float]) to store the last message timestamp.
+
+- `can_send_message(user_id: str) -> bool` — checks whether a message can be sent based on the time of the last message.
+- `record_message(user_id: str) -> bool` — records a new message and updates the last message timestamp.
+- `time_until_next_allowed(user_id: str) -> float` — calculates the time remaining until the next allowed message.
+  Use a dictionary (Dict[str, float]) to store the last message timestamp.
 
 ### Acceptance Criteria
 
@@ -166,6 +166,7 @@ Use a dictionary (Dict[str, float]) to store the last message timestamp.
 4. The provided test function should run and work as expected.
 
 Task template
+
 ```python
 import time
 from typing import Dict
@@ -217,8 +218,8 @@ if __name__ == "__main__":
 
 ```
 
-
 Expected output
+
 ```python
 === Message flow simulation (Throttling) ===
 Message  1 | User 2 | ✓
